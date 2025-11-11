@@ -7,6 +7,7 @@ import {
   signOut,
   GoogleAuthProvider,
   signInWithPopup,
+  updateProfile,
 } from "firebase/auth";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -17,9 +18,24 @@ export const AuthProvider = ({ children }) => {
 
   const googleProvider = new GoogleAuthProvider();
 
-  const createUser = (email, password) => {
+  const createUser = async (email, password, name, photoURL) => {
     setLoading(true);
-    return createUserWithEmailAndPassword(auth, email, password);
+    try {
+      const result = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      await updateProfile(result.user, {
+        displayName: name,
+        photoURL: photoURL,
+      });
+      setUser(result.user);
+      setLoading(false);
+      return result;
+    } catch (error) {
+      console.log(error);
+    }
   };
   const signInUser = (email, password) => {
     setLoading(true);

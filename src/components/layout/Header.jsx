@@ -48,7 +48,14 @@ const Header = () => {
               {links}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">EcoTrack</a>
+          <Link to="/" className="flex items-center">
+            <img
+              src="https://play-lh.googleusercontent.com/KQRIm1clFzsoyX23JNH47baBDC3zAdSfAwssCHf-j5Yyuu-PSnnccwv-IO-a8eEDxB8k"
+              alt="EcoTrack Logo"
+              className="inline-block w-8 h-8 mr-2"
+            />
+            <span className="btn-ghost text-xl font-bold">EcoTrack</span>
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 gap-4">{links}</ul>

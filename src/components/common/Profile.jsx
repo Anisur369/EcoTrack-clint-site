@@ -9,7 +9,7 @@ export default function UserDropdown({ user, onLogout }) {
       {/* Trigger button */}
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-2 px-3 py-2 rounded-md bg-slate-800 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+        className="flex items-center gap-2 px-2 py-1 rounded-md bg-slate-800 focus:outline-none focus:ring-2 focus:ring-cyan-500"
       >
         <img
           src={user.photoURL}

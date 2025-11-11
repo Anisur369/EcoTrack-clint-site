@@ -3,6 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/public/Home";
 import Register from "../pages/auth/Register";
 import PrivateRoute from "./ProtectedRoute";
+import Login from "../pages/auth/Login";
 
 const PublicRoute = createBrowserRouter([
   {
@@ -36,7 +37,7 @@ const PublicRoute = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      { path: "login", element: <div>Login</div> },
+      { path: "login", element: <Login /> },
       { path: "register", element: <Register /> },
       { path: "forgot-password", element: <div>Forgot Password</div> },
     ],

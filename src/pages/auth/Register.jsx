@@ -1,13 +1,18 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext.jsx";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [photoURL, setPhotoURL] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const { createUser, signInWithGoogle } = useContext(AuthContext);
   const [error, setError] = useState("");
+
+  const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -16,7 +21,8 @@ const Register = () => {
       return;
     }
     try {
-      await createUser(email, password);
+      await createUser(email, password, name, photoURL);
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
@@ -61,6 +67,8 @@ const Register = () => {
             type="text"
             placeholder="Full Name"
             className="mt-4 p-2 border-2 rounded-md"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
           <input
             type="email"
@@ -73,6 +81,8 @@ const Register = () => {
             type="text"
             placeholder="Photo URL"
             className="mt-4 p-2 border-2 rounded-md"
+            value={photoURL}
+            onChange={(e) => setPhotoURL(e.target.value)}
           />
           <input
             type="password"
