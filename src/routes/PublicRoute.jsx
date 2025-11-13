@@ -4,6 +4,9 @@ import Home from "../pages/public/Home";
 import Register from "../pages/auth/Register";
 import PrivateRoute from "./ProtectedRoute";
 import Login from "../pages/auth/Login";
+import NotFound from "../pages/NotFound";
+import Challenges from "../pages/public/Challenges";
+import ChallengesDetails from "../components/challenges/ChallengesDetails.jsx";
 
 const PublicRoute = createBrowserRouter([
   {
@@ -11,18 +14,23 @@ const PublicRoute = createBrowserRouter([
     element: <App />,
     children: [
       { index: true, element: <Home /> },
-      { path: "challenges", element: <div>Challenges </div> },
-      { path: "challenges/:id", element: <div>Challenges Details </div> },
+      { path: "/challenges", element: <Challenges /> },
       {
-        path: "challenges/add",
+        path: "/challenges/:id",
+        element: <ChallengesDetails />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/challenges/${params.id}`),
+      },
+      {
+        path: "/challenges/add",
         element: <PrivateRoute> Add Challenge </PrivateRoute>,
       },
       {
-        path: "challenges/join/:id",
+        path: "/challenges/join/:id",
         element: <PrivateRoute> Join Challenge </PrivateRoute>,
       },
       {
-        path: "my-activities",
+        path: "/my-activities",
         element: (
           <PrivateRoute>
             <div> My Activities </div>
@@ -30,21 +38,21 @@ const PublicRoute = createBrowserRouter([
         ),
       },
       {
-        path: "my-activities/:id",
+        path: "/my-activities/:id",
         element: (
           <PrivateRoute>
             <div> My Activities Details </div>
           </PrivateRoute>
         ),
       },
-      { path: "login", element: <Login /> },
-      { path: "register", element: <Register /> },
-      { path: "forgot-password", element: <div>Forgot Password</div> },
+      { path: "/login", element: <Login /> },
+      { path: "/register", element: <Register /> },
+      { path: "/forgot-password", element: <div>Forgot Password</div> },
     ],
   },
   {
     path: "*",
-    element: <div>404</div>,
+    element: <NotFound />,
   },
 ]);
 

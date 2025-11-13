@@ -6,11 +6,13 @@ import { Outlet } from "react-router";
 function Root() {
   return (
     <>
-      <Header />
-      <main>
-        <Outlet />
-      </main>
-      <Footer />
+      <div className="bg-gray-100 w-full lg:w-[80%] mx-auto">
+        <Header />
+        <main>
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
     </>
   );
 }

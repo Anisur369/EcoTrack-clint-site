@@ -1,110 +1,130 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext.jsx";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Register = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [photoURL, setPhotoURL] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-
   const { createUser, signInWithGoogle } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [photoURL, setPhotoURL] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
 
-  const navigate = useNavigate();
+  const validatePassword = (password) => {
+    const hasUpper = /[A-Z]/.test(password);
+    const hasLower = /[a-z]/.test(password);
+    const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+    const isLongEnough = password.length >= 6;
+
+    if (!hasUpper) return "Password must contain an uppercase letter.";
+    if (!hasLower) return "Password must contain a lowercase letter.";
+    if (!hasSpecial) return "Password must contain a special character.";
+    if (!isLongEnough) return "Password must be at least 6 characters.";
+    return "";
+  };
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
-      setError("Passwords do not match");
+    const validationError = validatePassword(password);
+    if (validationError) {
+      setError(validationError);
       return;
     }
+    if (password !== confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
+
     try {
       await createUser(email, password, name, photoURL);
       navigate("/");
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      setError("Registration failed. Try again.");
+      console.log(err);
     }
   };
 
   const handleGoogleSignIn = async () => {
     try {
-      await signInWithGoogle().then((result) => {
-        const newUser = {
-          name: result.user.displayName,
-          email: result.user.email,
-          image: result.user.photoURL,
-        };
+      const result = await signInWithGoogle();
+      const newUser = {
+        name: result.user.displayName,
+        email: result.user.email,
+        image: result.user.photoURL,
+      };
 
-        fetch("http://localhost:3000/users", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(newUser),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.message) {
-              setError("User already exists: " + data.message);
-            } else {
-              console.log("User added successfully");
-            }
-          });
+      await fetch("http://localhost:3000/users", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(newUser),
       });
-    } catch (error) {
-      console.log(error);
+
+      navigate("/");
+    } catch (err) {
+      setError("Google sign-in failed.");
+      console.log(err);
     }
   };
 
   return (
-    <div className="hero bg-base-200 min-h-[87vh]">
-      <div className="hero-content flex-col bg-gray-200 p-10 rounded-lg shadow-md w-[400px]">
-        <form className="flex flex-col w-full" onSubmit={handleRegister}>
-          <h1 className="text-3xl font-bold">Register</h1>
+    <div className="min-h-screen bg-gradient-to-br from-green-100 to-white flex items-center justify-center">
+      <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
+        <h1 className="text-3xl font-bold text-center text-green-700 mb-6">
+          Join EcoTrack
+        </h1>
+        <form onSubmit={handleRegister} className="space-y-4">
           <input
             type="text"
             placeholder="Full Name"
-            className="mt-4 p-2 border-2 rounded-md"
+            className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            required
           />
           <input
             type="email"
             placeholder="Email"
-            className="mt-4 p-2 border-2 rounded-md"
+            className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
           <input
             type="text"
             placeholder="Photo URL"
-            className="mt-4 p-2 border-2 rounded-md"
+            className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
             value={photoURL}
             onChange={(e) => setPhotoURL(e.target.value)}
           />
           <input
             type="password"
             placeholder="Password"
-            className="mt-4 p-2 border-2 rounded-md"
+            className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
           <input
             type="password"
             placeholder="Confirm Password"
-            className="mt-4 p-2 border-2 rounded-md"
+            className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            required
           />
-          <button className="bg-blue-500 text-white p-2 rounded-md mt-4">
+          {error && <p className="text-red-500 text-sm">{error}</p>}
+          <button
+            type="submit"
+            className="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700 transition"
+          >
             Register
           </button>
-          {error && <p className="text-red-500">{error}</p>}
         </form>
-        <p className="my-1 text-center">OR</p>
-        <hr className="block w-full" />
+
+        <div className="my-4 text-center text-sm text-gray-600">OR</div>
 
         <button
           onClick={handleGoogleSignIn}
@@ -137,8 +157,15 @@ const Register = () => {
               ></path>
             </g>
           </svg>
-          Login with Google
+          <span>Register with Google</span>
         </button>
+
+        <p className="mt-4 text-center text-sm text-gray-600">
+          Already have an account?{" "}
+          <Link to="/login" className="text-green-600 hover:underline">
+            Login here
+          </Link>
+        </p>
       </div>
     </div>
   );
