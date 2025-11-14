@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
-export default function UserDropdown({ user, onLogout }) {
+export default function UserDropdown({ user }) {
   const [open, setOpen] = useState(false);
+  const { signOutUser } = useContext(AuthContext);
 
   return (
     <div className="relative inline-block text-left">
@@ -54,7 +56,7 @@ export default function UserDropdown({ user, onLogout }) {
           <button
             onClick={() => {
               setOpen(false);
-              onLogout();
+              return signOutUser();
             }}
             className="w-full text-left px-4 py-2 text-slate-100 hover:bg-slate-800"
           >

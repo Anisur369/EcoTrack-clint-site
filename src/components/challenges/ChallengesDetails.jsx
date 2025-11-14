@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 const ChallengesDetails = () => {
   const challenge = useLoaderData();
-  console.log(challenge);
   return (
     <>
       <div className="max-w-3xl mx-auto p-6 bg-white rounded-md shadow-md mt-10">

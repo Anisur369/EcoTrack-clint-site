@@ -7,6 +7,8 @@ import Login from "../pages/auth/Login";
 import NotFound from "../pages/NotFound";
 import Challenges from "../pages/public/Challenges";
 import ChallengesDetails from "../components/challenges/ChallengesDetails.jsx";
+import AddChallenge from "../components/challenges/AddChallengeForm.jsx";
+// import JoinChallenge from "../pages/public/JoinChallenge";
 
 const PublicRoute = createBrowserRouter([
   {
@@ -14,7 +16,14 @@ const PublicRoute = createBrowserRouter([
     element: <App />,
     children: [
       { index: true, element: <Home /> },
-      { path: "/challenges", element: <Challenges /> },
+      {
+        path: "/challenges",
+        element: (
+          <PrivateRoute>
+            <Challenges />
+          </PrivateRoute>
+        ),
+      },
       {
         path: "/challenges/:id",
         element: <ChallengesDetails />,
@@ -23,7 +32,11 @@ const PublicRoute = createBrowserRouter([
       },
       {
         path: "/challenges/add",
-        element: <PrivateRoute> Add Challenge </PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <AddChallenge />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/challenges/join/:id",
@@ -48,11 +61,11 @@ const PublicRoute = createBrowserRouter([
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
       { path: "/forgot-password", element: <div>Forgot Password</div> },
+      {
+        path: "*",
+        element: <NotFound />,
+      },
     ],
-  },
-  {
-    path: "*",
-    element: <NotFound />,
   },
 ]);
 

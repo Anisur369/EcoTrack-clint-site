@@ -4,12 +4,13 @@ import { AuthContext } from "../../context/AuthContext.jsx";
 import Profile from "../common/Profile.jsx";
 
 const Header = () => {
-  const { user, signOutUser } = use(AuthContext);
+  const { user } = use(AuthContext);
 
   const links = user ? (
     <>
       <NavLink to="/">Home</NavLink>
       <NavLink to="/challenges">Challenges</NavLink>
+      <NavLink to="/challenges/add">Add Challenge</NavLink>
       <NavLink to="/activities">My Activities</NavLink>
     </>
   ) : (
@@ -43,7 +44,7 @@ const Header = () => {
             </div>
             <ul
               tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow gap-2"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow gap-2"
             >
               {links}
             </ul>
@@ -63,7 +64,7 @@ const Header = () => {
         <div className="navbar-end gap-2">
           {user ? (
             <>
-              <Profile user={user} onLogout={signOutUser} />
+              <Profile user={user} />
             </>
           ) : (
             <>

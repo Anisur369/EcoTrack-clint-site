@@ -2,52 +2,67 @@ import React from "react";
 import { FaThumbsUp, FaUser, FaClock } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const tips = [
-  {
-    id: 1,
-    title: "Use reusable bags instead of plastic",
-    authorName: "Rafiul Islam",
-    upvotes: 42,
-    createdAt: "2 days ago",
-  },
-  {
-    id: 2,
-    title: "Turn off lights when not in use",
-    authorName: "Mitu Akter",
-    upvotes: 31,
-    createdAt: "1 day ago",
-  },
-  {
-    id: 3,
-    title: "Collect rainwater for gardening",
-    authorName: "Tanvir Hasan",
-    upvotes: 18,
-    createdAt: "3 hours ago",
-  },
-  {
-    id: 4,
-    title: "Use public transport weekly",
-    authorName: "Farzana Rahman",
-    upvotes: 27,
-    createdAt: "5 days ago",
-  },
-  {
-    id: 5,
-    title: "Compost kitchen waste",
-    authorName: "Jahidul Kabir",
-    upvotes: 35,
-    createdAt: "6 hours ago",
-  },
-  {
-    id: 6,
-    title: "Collect rainwater for gardening",
-    authorName: "Ahmed Kabir",
-    upvotes: 35,
-    createdAt: "6 hours ago",
-  },
-];
+// const tips = [
+//   {
+//     id: 1,
+//     title: "Use reusable bags instead of plastic",
+//     authorName: "Rafiul Islam",
+//     upvotes: 42,
+//     createdAt: "2 days ago",
+//   },
+//   {
+//     id: 2,
+//     title: "Turn off lights when not in use",
+//     authorName: "Mitu Akter",
+//     upvotes: 31,
+//     createdAt: "1 day ago",
+//   },
+//   {
+//     id: 3,
+//     title: "Collect rainwater for gardening",
+//     authorName: "Tanvir Hasan",
+//     upvotes: 18,
+//     createdAt: "3 hours ago",
+//   },
+//   {
+//     id: 4,
+//     title: "Use public transport weekly",
+//     authorName: "Farzana Rahman",
+//     upvotes: 27,
+//     createdAt: "5 days ago",
+//   },
+//   {
+//     id: 5,
+//     title: "Compost kitchen waste",
+//     authorName: "Jahidul Kabir",
+//     upvotes: 35,
+//     createdAt: "6 hours ago",
+//   },
+//   {
+//     id: 6,
+//     title: "Collect rainwater for gardening",
+//     authorName: "Ahmed Kabir",
+//     upvotes: 35,
+//     createdAt: "6 hours ago",
+//   },
+// ];
 
 const RecentTips = () => {
+  const [tips, setTips] = React.useState([]);
+
+  // Fetch tips from server (mocked here) http://localhost:3000/tips
+  React.useEffect(() => {
+    const fetchTips = async () => {
+      const response = await fetch("http://localhost:3000/tips");
+      const data = await response.json();
+      const sortedData = data.sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      );
+      const recentFour = sortedData.slice(0, 4);
+      setTips(recentFour);
+    };
+    fetchTips();
+  }, []);
   return (
     <section className="py-12 bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-6xl mx-auto px-4">

@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 
 const ChallengeCard = ({ challenge }) => {
+  if (!challenge) {
+    return <p>Loading...</p>;
+  }
   return (
     <div className="bg-white p-4 rounded-md shadow-md">
       <img

@@ -1,40 +1,57 @@
 import React from "react";
 import { FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
+import { useEffect, useState } from "react";
 
-const events = [
-  {
-    id: 1,
-    title: "Beach Cleanup Drive",
-    date: "Nov 18, 2025",
-    location: "Cox's Bazar",
-    description:
-      "Join hands to clean the beach and raise awareness about ocean pollution.",
-  },
-  {
-    id: 2,
-    title: "Tree Plantation Day",
-    date: "Nov 22, 2025",
-    location: "Dhaka University Campus",
-    description: "Help us plant 500+ trees to restore urban greenery.",
-  },
-  {
-    id: 3,
-    title: "Eco Workshop for Students",
-    date: "Nov 25, 2025",
-    location: "BRAC Center, Mohakhali",
-    description:
-      "Interactive sessions on sustainability and climate action for youth.",
-  },
-  {
-    id: 4,
-    title: "Green Cycling Rally",
-    date: "Nov 30, 2025",
-    location: "Hatirjheel",
-    description: "Cycle for the planet and promote eco-friendly commuting.",
-  },
-];
+// const events = [
+//   {
+//     id: 1,
+//     title: "Beach Cleanup Drive",
+//     date: "Nov 18, 2025",
+//     location: "Cox's Bazar",
+//     description:
+//       "Join hands to clean the beach and raise awareness about ocean pollution.",
+//   },
+//   {
+//     id: 2,
+//     title: "Tree Plantation Day",
+//     date: "Nov 22, 2025",
+//     location: "Dhaka University Campus",
+//     description: "Help us plant 500+ trees to restore urban greenery.",
+//   },
+//   {
+//     id: 3,
+//     title: "Eco Workshop for Students",
+//     date: "Nov 25, 2025",
+//     location: "BRAC Center, Mohakhali",
+//     description:
+//       "Interactive sessions on sustainability and climate action for youth.",
+//   },
+//   {
+//     id: 4,
+//     title: "Green Cycling Rally",
+//     date: "Nov 30, 2025",
+//     location: "Hatirjheel",
+//     description: "Cycle for the planet and promote eco-friendly commuting.",
+//   },
+// ];
 
 const UpcomingEvents = () => {
+  const [events, setEvents] = useState([]);
+
+  
+  useEffect(() => {
+    const fetchEvents = async () => {
+      const response = await fetch("http://localhost:3000/events");
+      const data = await response.json();
+      const sortedData = data.sort(
+        (a, b) => new Date(a.date) - new Date(b.date)
+      );
+      const upcomingFour = sortedData.slice(0, 4);
+      setEvents(upcomingFour);
+    };
+    fetchEvents();
+  }, []);
+
   return (
     <section className="py-12 bg-white">
       <div className="max-w-6xl mx-auto px-4">
