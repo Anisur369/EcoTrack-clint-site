@@ -38,7 +38,6 @@ import { useEffect, useState } from "react";
 const UpcomingEvents = () => {
   const [events, setEvents] = useState([]);
 
-  
   useEffect(() => {
     const fetchEvents = async () => {
       const response = await fetch("http://localhost:3000/events");
@@ -61,7 +60,7 @@ const UpcomingEvents = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-8">
           {events.map((event) => (
             <div
-              key={event.id}
+              key={event._id}
               className="bg-gray-50 border border-gray-200 rounded-xl shadow-md p-6 hover:shadow-lg transition duration-300"
             >
               <h3 className="text-xl font-semibold text-gray-900 mb-2">

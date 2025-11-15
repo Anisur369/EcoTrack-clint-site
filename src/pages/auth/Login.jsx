@@ -2,33 +2,49 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext.jsx";
 
-import { toast } from "react-hot-toast";
+// import toast, { Toaster } from "react-hot-toast";
+import React from "react";
 
-export default function LoginPage() {
+import { toast } from "react-toastify";
+
+function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  // const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const { user, signInUser, signInWithGoogle } = useContext(AuthContext);
+  // const notify = () => toast("Wow so easy!");
+
+  const { user, signInUser, signInWithGoogle, ToastContainer } =
+    useContext(AuthContext);
   console.log("Current user:", user);
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
+      const notify = () => toast("Login successful!");
       await signInUser(email, password);
       setLoading(false);
       navigate("/");
+      notify();
     } catch (error) {
-      toast.error(error.message);
+      const notify = () => toast("Login failed...! Not valid user.");
       setLoading(false);
+      // setError(error.message);
+      notify();
     }
   };
 
   const handleGoogleSignIn = async () => {
     try {
       await signInWithGoogle().then((result) => {
+        if (result.user) {
+          const notify = () => toast("Login successful!");
+          navigate("/");
+          notify();
+        }
         const newUser = {
           name: result.user.displayName,
           email: result.user.email,
@@ -45,7 +61,7 @@ export default function LoginPage() {
           .then((res) => res.json())
           .then((data) => {
             if (data.message) {
-              setError("User already exists: " + data.message);
+              // setError("User already exists: " + data.message);
             } else {
               console.log("User added successfully");
             }
@@ -53,6 +69,9 @@ export default function LoginPage() {
       });
     } catch (error) {
       console.log(error);
+      // setError("Google sign-in failed.");
+      const notify = () => toast("Google sign-in failed.");
+      notify();
     }
   };
 
@@ -112,3 +131,5 @@ export default function LoginPage() {
     </div>
   );
 }
+
+export default LoginPage;

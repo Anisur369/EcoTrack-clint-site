@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext.jsx";
 import { useNavigate, Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const { createUser, signInWithGoogle } = useContext(AuthContext);
@@ -40,6 +41,20 @@ const Register = () => {
 
     try {
       await createUser(email, password, name, photoURL);
+      // const notify = () => toast("Registration successful!");
+
+      // const newUser = {
+      //   name,
+      //   email,
+      //   image: photoURL,
+      // };
+
+      // await fetch("http://localhost:3000/users", {
+      //   method: "POST",
+      //   headers: { "content-type": "application/json" },
+      //   body: JSON.stringify(newUser),
+      // });
+      toast("Registration successful!");
       navigate("/");
     } catch (err) {
       setError("Registration failed. Try again.");

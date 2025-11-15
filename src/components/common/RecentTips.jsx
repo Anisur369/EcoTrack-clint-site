@@ -70,37 +70,39 @@ const RecentTips = () => {
           💡 Recent Community Tips
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {tips.map((tip) => (
-            <div
-              key={tip.id}
-              className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition duration-300"
-            >
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                {tip.title}
-              </h3>
+          {tips.map((tip) => {
+            return (
+              <div
+                key={tip._id}
+                className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition duration-300"
+              >
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                  {tip.title}
+                </h3>
 
-              <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
-                <FaUser className="text-blue-500" />
-                <span className="font-medium">{tip.authorName}</span>
-              </div>
+                <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
+                  <FaUser className="text-blue-500" />
+                  <span className="font-medium">{tip.authorName}</span>
+                </div>
 
-              <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
-                <FaThumbsUp className="text-green-500" />
-                <span>{tip.upvotes} upvotes</span>
-              </div>
+                <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
+                  <FaThumbsUp className="text-green-500" />
+                  <span>{tip.upvotes} upvotes</span>
+                </div>
 
-              <div className="flex items-center gap-2 text-xs text-gray-500">
-                <FaClock className="text-yellow-500" />
-                <span>{tip.createdAt}</span>
-              </div>
+                <div className="flex items-center gap-2 text-xs text-gray-500">
+                  <FaClock className="text-yellow-500" />
+                  <span>{tip.createdAt}</span>
+                </div>
 
-              <div className="mt-4">
-                <span className="inline-block bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded-full">
-                  #EcoTip
-                </span>
+                <div className="mt-4">
+                  <span className="inline-block bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded-full">
+                    #EcoTip
+                  </span>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
       <Link
