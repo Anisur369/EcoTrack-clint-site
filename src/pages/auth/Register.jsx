@@ -77,9 +77,12 @@ const Register = () => {
         body: JSON.stringify(newUser),
       });
 
+      toast("Login successful!");
+
       navigate("/");
     } catch (err) {
       setError("Google sign-in failed.");
+      toast("Google sign-in failed.");
       console.log(err);
     }
   };

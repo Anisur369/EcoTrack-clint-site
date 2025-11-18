@@ -3,6 +3,7 @@ import { Navigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext.jsx";
 import { useContext as use } from "react";
 import ChallengeGrid from "../../components/challenges/ChallengeGrid.jsx";
+import { Link } from "react-router-dom";
 
 const Challenges = () => {
   const { user } = use(AuthContext);
@@ -44,8 +45,13 @@ const Challenges = () => {
   }, []);
 
   return (
-    <div className="flex flex-col gap-4">
-      <h1 className="text-3xl font-bold">Challenges</h1>
+    <div className="flex flex-col gap-4 my-14 mx-2">
+      <div className="flex justify-between items-center p-4">
+        <h1 className="text-3xl font-bold">Challenges</h1>
+        <Link className="btn btn-primary" to="/challenges/add">
+          Add Challenge
+        </Link>
+      </div>
       <ChallengeGrid challenges={challenges} />
     </div>
   );

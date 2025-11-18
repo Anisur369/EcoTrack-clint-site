@@ -9,7 +9,8 @@ import Challenges from "../pages/public/Challenges";
 import ChallengesDetails from "../components/challenges/ChallengesDetails.jsx";
 import AddChallenge from "../components/challenges/AddChallengeForm.jsx";
 import ForgotPasswordLink from "../components/auth/ForgotPasswordLink.jsx";
-// import JoinChallenge from "../pages/public/JoinChallenge";
+import JoinChallenge from "../pages/protected/JoinChallenge.jsx";
+import MyActivities from "../pages/protected/MyActivities.jsx";
 
 const PublicRoute = createBrowserRouter([
   {
@@ -41,15 +42,18 @@ const PublicRoute = createBrowserRouter([
       },
       {
         path: "/challenges/join/:id",
-        element: <PrivateRoute> Join Challenge </PrivateRoute>,
+        element: <JoinChallenge />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/challenges/${params.id}`),
       },
       {
         path: "/my-activities",
         element: (
           <PrivateRoute>
-            <div> My Activities </div>
+            <MyActivities />
           </PrivateRoute>
         ),
+        loader: () => fetch("http://localhost:3000/activities"),
       },
       {
         path: "/my-activities/:id",

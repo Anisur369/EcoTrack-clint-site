@@ -11,7 +11,6 @@ function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  // const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   // const notify = () => toast("Wow so easy!");
@@ -32,7 +31,7 @@ function LoginPage() {
     } catch (error) {
       const notify = () => toast("Login failed...! Not valid user.");
       setLoading(false);
-      // setError(error.message);
+      console.log(error.message);
       notify();
     }
   };
@@ -61,7 +60,7 @@ function LoginPage() {
           .then((res) => res.json())
           .then((data) => {
             if (data.message) {
-              // setError("User already exists: " + data.message);
+              console.log(data.message);
             } else {
               console.log("User added successfully");
             }
@@ -69,7 +68,6 @@ function LoginPage() {
       });
     } catch (error) {
       console.log(error);
-      // setError("Google sign-in failed.");
       const notify = () => toast("Google sign-in failed.");
       notify();
     }
