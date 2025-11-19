@@ -1,7 +1,7 @@
 import React, { use } from "react";
 import { NavLink, Link } from "react-router";
 import { AuthContext } from "../../context/AuthContext.jsx";
-import Profile from "../common/Profile.jsx";
+import Profile from "../common/UserDropdown.jsx";
 
 const Header = () => {
   const { user } = use(AuthContext);

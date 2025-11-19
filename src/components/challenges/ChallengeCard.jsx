@@ -2,7 +2,11 @@ import { Link } from "react-router-dom";
 
 const ChallengeCard = ({ challenge }) => {
   if (!challenge) {
-    return <p>Loading...</p>;
+    return (
+      <div className="flex justify-center items-center h-48">
+        <span className="loading loading-bars loading-xl"></span>
+      </div>
+    );
   }
   return (
     <div className="bg-white p-4 rounded-md shadow-md flex flex-col gap-4">

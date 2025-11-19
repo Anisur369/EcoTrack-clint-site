@@ -1,10 +1,9 @@
-import SwiperCarousel from "../../components/common/SwiperCarousel";
-import ActiveChallenges from "../../components/common/ActiveChallenges";
-import RecentTips from "../../components/common/RecentTips";
-import UpcomingEvents from "../../components/common/UpcomingEvents";
-import WhyGoGreen from "../../components/common/WhyGoGreen";
-import HowItWorks from "../../components/common/HowItWorks";
-
+import SwiperCarousel from "../../components/home/SwiperCarousel";
+import ActiveChallenges from "../../components/home/ActiveChallenges";
+import RecentTips from "../../components/home/RecentTips";
+import UpcomingEvents from "../../components/home/UpcomingEvents";
+import WhyGoGreen from "../../components/home/WhyGoGreen";
+import HowItWorks from "../../components/home/HowItWorks";
 
 const Home = () => {
   return (

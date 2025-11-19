@@ -11,6 +11,7 @@ import AddChallenge from "../components/challenges/AddChallengeForm.jsx";
 import ForgotPasswordLink from "../components/auth/ForgotPasswordLink.jsx";
 import JoinChallenge from "../pages/protected/JoinChallenge.jsx";
 import MyActivities from "../pages/protected/MyActivities.jsx";
+import Profile from "../components/common/Profile.jsx";
 
 const PublicRoute = createBrowserRouter([
   {
@@ -65,6 +66,7 @@ const PublicRoute = createBrowserRouter([
       },
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
+      { path: "/profile", element: <Profile /> },
       { path: "/forgot-password", element: <ForgotPasswordLink /> },
       {
         path: "*",
