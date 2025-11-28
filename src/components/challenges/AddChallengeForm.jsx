@@ -66,6 +66,16 @@ const AddChallengeForm = () => {
       <h2 className="text-2xl font-bold mb-6">Add New Challenge</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
+          <label className="block text-gray-700">Image URL</label>
+          <input
+            type="text"
+            name="imageUrl"
+            value={challenge.imageUrl}
+            onChange={handleChange}
+            className="w-full p-2 border border-gray-300 rounded-md"
+          />
+        </div>
+        <div>
           <label className="block text-gray-700">Title</label>
           <input
             type="text"
@@ -144,21 +154,12 @@ const AddChallengeForm = () => {
             className="w-full p-2 border border-gray-300 rounded-md"
           />
         </div>
-        <div>
-          <label className="block text-gray-700">Image URL</label>
-          <input
-            type="text"
-            name="imageUrl"
-            value={challenge.imageUrl}
-            onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded-md"
-          />
-        </div>
+
         <button
           type="submit"
           className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md"
         >
-          Add Challenge
+          Create Challenge
         </button>
       </form>
     </div>

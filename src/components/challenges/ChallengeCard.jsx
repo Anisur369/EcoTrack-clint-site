@@ -9,29 +9,39 @@ const ChallengeCard = ({ challenge }) => {
     );
   }
   return (
-    <div className="bg-white p-4 rounded-md shadow-md flex flex-col gap-4">
-      <img
-        src={challenge.imageUrl}
-        alt={challenge.title}
-        className="w-full h-48 object-cover rounded-md"
-      />
-      <h2 className="text-2xl font-bold">{challenge.title}</h2>
-      <p className="text-gray-600">
-        <b>Category:</b> {challenge.category}
-      </p>
-      <p className="text-gray-600">
-        <b>Metric:</b> {challenge.impactMetric}
-      </p>
-      <div className="flex justify-between">
+    <div className="bg-white p-4 rounded-md shadow-md">
+      <div className="flex flex-col gap-2 h-[350px]">
+        <img
+          src={challenge.imageUrl}
+          alt={challenge.title}
+          className="w-full h-48 object-cover rounded-md"
+        />
+        <h2 className="text-xl font-bold">{challenge.title}</h2>
+        <p className="text-gray-600">{challenge.category}</p>
+        <div className="flex gap-[10%]">
+          <p className="text-gray-600">
+            <b>
+              {challenge.duration} <span>days</span>
+            </b>
+          </p>
+          <p className="text-gray-600">
+            <b>
+              {challenge.participants} <span>participants</span>
+            </b>
+          </p>
+        </div>
+        <p className="text-gray-600">{challenge.description}</p>
+      </div>
+      <div className="flex justify-between mt-2">
         <Link
           to={`/challenges/${challenge._id}`}
-          className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md"
+          className="bg-green-500 hover:bg-green-600 text-white px-4 py-1 rounded-md shadow-2xs"
         >
-          View Challenge
+          View
         </Link>
         <Link
           to={`/challenges/join/${challenge._id}`}
-          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md"
+          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-1 rounded-md shadow-2xs"
         >
           Join
         </Link>

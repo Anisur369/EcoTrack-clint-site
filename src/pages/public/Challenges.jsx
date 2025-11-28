@@ -46,11 +46,23 @@ const Challenges = () => {
 
   return (
     <div className="flex flex-col gap-4 my-14 mx-2">
-      <div className="flex justify-between items-center p-4">
-        <h1 className="text-3xl font-bold">Challenges</h1>
-        <Link className="btn btn-primary" to="/challenges/add">
-          Add Challenge
-        </Link>
+      <h1 className="text-3xl font-bold">Challenges</h1>
+      <div className="flex justify-between items-center">
+        <b>Filter by Category: </b>
+        <div className="flex gap-2">
+          <select className="select select-bordered w-full max-w-xs outline-0">
+            <option disabled selected>
+              Select Category
+            </option>
+            <option>Environment</option>
+            <option>Sustainability</option>
+            <option>Health</option>
+            <option>Community</option>
+          </select>
+          <Link className="btn btn-primary" to="/challenges/add">
+            Add Challenge
+          </Link>
+        </div>
       </div>
       <ChallengeGrid challenges={challenges} />
     </div>

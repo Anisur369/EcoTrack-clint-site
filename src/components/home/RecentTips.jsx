@@ -58,7 +58,7 @@ const RecentTips = () => {
       const sortedData = data.sort(
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
       );
-      const recentFour = sortedData.slice(0, 4);
+      const recentFour = sortedData.slice(0, 6);
       setTips(recentFour);
     };
     fetchTips();
