@@ -10,8 +10,9 @@ import ChallengesDetails from "../components/challenges/ChallengesDetails.jsx";
 import AddChallenge from "../components/challenges/AddChallengeForm.jsx";
 import ForgotPasswordLink from "../components/auth/ForgotPasswordLink.jsx";
 import JoinChallenge from "../pages/protected/JoinChallenge.jsx";
-import MyActivities from "../pages/protected/MyActivities.jsx";
 import Profile from "../components/common/Profile.jsx";
+// import MyActivities from "../pages/protected/MyActivities.jsx";
+import MyActivities from "../pages/protected/MyActivities2.jsx";
 
 const PublicRoute = createBrowserRouter([
   {

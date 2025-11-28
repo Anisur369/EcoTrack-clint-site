@@ -14,7 +14,7 @@ const ChallengesDetails = () => {
     setIsModalOpen(true);
     setShowModal(true);
   };
-  
+
   const updateFunction = () => {
     setIsModalOpen(false);
     setShowModal(false);
@@ -29,7 +29,6 @@ const ChallengesDetails = () => {
     // alert success toast()
     toast.success("Challenge updated successfully!");
   };
-  console.log(challengeModal.imageUrl);
   return (
     <>
       <div className="max-w-3xl mx-auto p-6 bg-white rounded-md shadow-md mt-10 relative">
@@ -216,7 +215,7 @@ const ChallengesDetails = () => {
         </div>
         <div className="flex justify-between items-center mt-4">
           <Link
-            to={`/challenges/join/${challenge.id}`}
+            to={`/challenges/join/${challenge._id}`}
             className="mt-4 inline-block bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md"
           >
             Join Challenge
