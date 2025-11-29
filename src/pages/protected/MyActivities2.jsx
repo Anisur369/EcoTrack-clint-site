@@ -16,67 +16,31 @@ import {
 
 export default function MyActivities() {
   const [userChallenges, setUserChallenges] = useState([]);
+  const [challengesData, setChallengesData] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  // Mock data - পরে API থেকে আসবে
+  // http://localhost:3000/userChallenges fetch user challenges from server
   useEffect(() => {
-    // http://localhost:3000/userChallenges fetch your user userChallenges
     const fetchUserChallenges = async () => {
       const response = await fetch("http://localhost:3000/userChallenges");
-      const userdata = await response.json();
-      const fetchChallenges = await fetch("http://localhost:3000/challenges");
-      const cData = await fetchChallenges.json();
-
-      const userApi = userdata.map((userMarchData) => {
-        console.log(userMarchData);
-        const challenge = cData.find(
-          (c) => c._id === userMarchData._challengeId
-        );
-        return { ...userMarchData, challenge };
-      });
-      setUserChallenges(userApi);
-
+      const data = await response.json();
+      setUserChallenges(data);
       setLoading(false);
     };
-
-    // setTimeout(() => {
-    //   setUserChallenges([
-    //     {
-    //       id: "1",
-    //       title: "Plastic-Free July",
-    //       category: "Waste Reduction",
-    //       progress: 78,
-    //       daysLeft: 12,
-    //       impact: "42 kg plastic saved",
-    //       status: "Ongoing",
-    //       image: "/api/placeholder/400/300",
-    //     },
-    //     {
-    //       id: "2",
-    //       title: "30 Days No Car",
-    //       category: "Sustainable Transport",
-    //       progress: 100,
-    //       daysLeft: 0,
-    //       impact: "180 kg CO₂ reduced",
-    //       status: "Finished",
-    //       image: "/api/placeholder/400/300",
-    //     },
-    //     {
-    //       id: "3",
-    //       title: "Save Water Challenge",
-    //       category: "Water Conservation",
-    //       progress: 45,
-    //       daysLeft: 18,
-    //       impact: "1,240 liters saved",
-    //       status: "Ongoing",
-    //       image: "/api/placeholder/400/300",
-    //     },
-    //   ]);
-    //   setLoading(false);
-    // }, 1500);
-
     fetchUserChallenges();
+    const fetchChallenges = async () => {
+      const response = await fetch("http://localhost:3000/challenges");
+      const data = await response.json();
+      setChallengesData(data);
+      setLoading(false);
+    };
+    fetchChallenges();
   }, []);
+
+  function getDaysBetween(start, end) {
+    const diffTime = new Date(end) - new Date(start);
+    return diffTime / (1000 * 60 * 60 * 24) + 1;
+  }
+
   return (
     <>
       {/* Main Dashboard */}
@@ -153,25 +117,58 @@ export default function MyActivities() {
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {userChallenges.map((userData) => {
-                // console.log(userData);
                 return (
                   <Link
                     key={userData._id}
-                    to={`/my-activities/${userData._id}`}
+                    to={`/my-activities/${userData._id.split("'")[1]}`}
                     className="group"
                   >
                     <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
                       <div className="h-48 bg-gradient-to-br from-emerald-400 to-teal-500 relative overflow-hidden">
+                        {challengesData.map((challenge) => {
+                          // console.log(`ObjectId('${challenge._id}')`);
+                          // console.log(userData.challengeId ==`ObjectId('${challenge._id}')`);
+                          if (
+                            userData.challengeId ==
+                            `ObjectId('${challenge._id}')`
+                          ) {
+                            return (
+                              <img
+                                className="w-full h-full object-cover"
+                                alt="image is not available"
+                                src={challenge.imageUrl}
+                              />
+                            );
+                          }
+                        })}
                         <div className="absolute inset-0 bg-black opacity-20 group-hover:opacity-30 transition"></div>
                         <div className="absolute bottom-4 left-4">
                           <span className="px-4 py-2 bg-white bg-opacity-90 rounded-full text-sm font-semibold text-emerald-800">
-                            {/* {userData.challenge.category} */}
+                            {challengesData.map((challenge) => {
+                              // console.log(`ObjectId('${challenge._id}')`);
+                              // console.log(userData.challengeId ==`ObjectId('${challenge._id}')`);
+                              if (
+                                userData.challengeId ==
+                                `ObjectId('${challenge._id}')`
+                              ) {
+                                return challenge.category;
+                              }
+                            })}
                           </span>
                         </div>
                       </div>
                       <div className="p-6">
                         <h3 className="text-xl font-bold text-gray-900 mb-2">
-                          {/* {userData.challenge.title} */}
+                          {challengesData.map((challenge) => {
+                            // console.log(`ObjectId('${challenge._id}')`);
+                            // console.log(userData.challengeId ==`ObjectId('${challenge._id}')`);
+                            if (
+                              userData.challengeId ==
+                              `ObjectId('${challenge._id}')`
+                            ) {
+                              return challenge.title;
+                            }
+                          })}
                         </h3>
 
                         <div className="mb-4">
@@ -203,13 +200,28 @@ export default function MyActivities() {
                                   : "text-gray-600"
                               }
                             >
-                              {userData.daysLeft === 0
-                                ? "Completed!"
-                                : `${userData.daysLeft} days left`}
+                              {challengesData.map((challenge) => {
+                                if (
+                                  userData.challengeId ===
+                                  `ObjectId('${challenge._id}')`
+                                ) {
+                                  return getDaysBetween(
+                                    challenge.startDate,
+                                    challenge.endDate
+                                  );
+                                }
+                              })}
                             </span>
                           </div>
                           <div className="text-emerald-600 font-semibold">
-                            {userData.impact}
+                            {challengesData.map((challenge) => {
+                              if (
+                                userData.challengeId ===
+                                `ObjectId('${challenge._id}')`
+                              ) {
+                                return challenge.impactMetric;
+                              }
+                            })}
                           </div>
                         </div>
                       </div>

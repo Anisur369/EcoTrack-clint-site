@@ -55,7 +55,7 @@ const PublicRoute = createBrowserRouter([
             <MyActivities />
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:3000/activities"),
+        loader: () => fetch("http://localhost:3000/userChallenges"),
       },
       {
         path: "/my-activities/:id",
@@ -64,6 +64,8 @@ const PublicRoute = createBrowserRouter([
             <div> My Activities Details </div>
           </PrivateRoute>
         ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/userChallenges/${params.id}`),
       },
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
