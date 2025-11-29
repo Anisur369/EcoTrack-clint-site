@@ -11,8 +11,8 @@ import AddChallenge from "../components/challenges/AddChallengeForm.jsx";
 import ForgotPasswordLink from "../components/auth/ForgotPasswordLink.jsx";
 import JoinChallenge from "../pages/protected/JoinChallenge.jsx";
 import Profile from "../components/common/Profile.jsx";
-// import MyActivities from "../pages/protected/MyActivities.jsx";
-import MyActivities from "../pages/protected/MyActivities2.jsx";
+import MyActivities from "../pages/protected/MyActivities.jsx";
+import MyActivitiesDetails from "../pages/protected/MyActivitiesDetails.jsx";
 
 const PublicRoute = createBrowserRouter([
   {
@@ -61,7 +61,7 @@ const PublicRoute = createBrowserRouter([
         path: "/my-activities/:id",
         element: (
           <PrivateRoute>
-            <div> My Activities Details </div>
+            <MyActivitiesDetails />
           </PrivateRoute>
         ),
         loader: ({ params }) =>
