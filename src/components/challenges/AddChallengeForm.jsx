@@ -1,20 +1,3 @@
-// {
-//   "_id": {
-//     "$oid": "6915829475bcc74f585e7257"
-//   },
-//   "title": "Walk to Work Week",
-//   "category": "Health & Mobility",
-//   "description": "Walk to work every day for a week",
-//   "duration": 7,
-//   "target": "Reduce carbon emissions",
-//   "participants": 0,
-//   "impactMetric": "km walked",
-//   "createdBy": "admin@ecotrack.com",
-//   "startDate": "2024-08-01",
-//   "endDate": "2024-08-07",
-//   "imageUrl": "https://picsum.photos/400/250?1"
-// }
-// Add Challenge Form Component http://localhost:3000/challenges/add
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";

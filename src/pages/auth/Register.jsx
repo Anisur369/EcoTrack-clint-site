@@ -41,19 +41,6 @@ const Register = () => {
 
     try {
       await createUser(email, password, name, photoURL);
-      // const notify = () => toast("Registration successful!");
-
-      // const newUser = {
-      //   name,
-      //   email,
-      //   image: photoURL,
-      // };
-
-      // await fetch("http://localhost:3000/users", {
-      //   method: "POST",
-      //   headers: { "content-type": "application/json" },
-      //   body: JSON.stringify(newUser),
-      // });
       toast("Registration successful!");
       navigate("/");
     } catch (err) {

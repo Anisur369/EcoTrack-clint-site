@@ -47,7 +47,7 @@ export default function UserDropdown({ user }) {
             👤 Profile
           </Link>
           <Link
-            to="/activities"
+            to="/my-activities"
             className="block px-4 py-2 text-slate-100 hover:bg-slate-800"
             onClick={() => setOpen(false)}
           >

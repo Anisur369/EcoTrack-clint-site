@@ -1,4 +1,3 @@
-// only email fileds and button click to reset password
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext.jsx";
 import { useNavigate, Link } from "react-router-dom";
@@ -18,6 +17,7 @@ function ForgotPasswordLink() {
       console.log(error);
     }
   };
+  
   // style tailwind css diye
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100">

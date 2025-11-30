@@ -2,8 +2,6 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext.jsx";
 
-// import toast, { Toaster } from "react-hot-toast";
-import React from "react";
 
 import { toast } from "react-toastify";
 
@@ -15,9 +13,8 @@ function LoginPage() {
 
   // const notify = () => toast("Wow so easy!");
 
-  const { user, signInUser, signInWithGoogle, ToastContainer } =
+  const { signInUser, signInWithGoogle } =
     useContext(AuthContext);
-  console.log("Current user:", user);
 
   const handleLogin = async (e) => {
     e.preventDefault();

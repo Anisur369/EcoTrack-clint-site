@@ -1,36 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-// const challenges = [
-//   {
-//     id: 1,
-//     title: "Reduce Plastic Use",
-//     category: "Environment",
-//     metric: "120 participants",
-//     image: "https://picsum.photos/400/250?1",
-//   },
-//   {
-//     id: 2,
-//     title: "Walk to Work",
-//     category: "Health",
-//     metric: "85 km walked",
-//     image: "https://picsum.photos/400/250?2",
-//   },
-//   {
-//     id: 3,
-//     title: "Plant Trees",
-//     category: "Community",
-//     metric: "42 trees planted",
-//     image: "https://picsum.photos/400/250?3",
-//   },
-//   {
-//     id: 4,
-//     title: "Save Water",
-//     category: "Sustainability",
-//     metric: "3,200 L saved",
-//     image: "https://picsum.photos/400/250?4",
-//   },
-// ];
 
 const ActiveChallenges = () => {
   const [challenges, setChallenges] = React.useState([]);

@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
-  Leaf,
   Trophy,
   Target,
   Trees,
@@ -10,8 +9,6 @@ import {
   Trash2,
   Calendar,
   TrendingUp,
-  User,
-  LogOut,
 } from "lucide-react";
 
 export default function MyActivities() {
@@ -38,7 +35,7 @@ export default function MyActivities() {
 
   function getDaysBetween(start, end) {
     const diffTime = new Date(end) - new Date(start);
-    return diffTime / (1000 * 60 * 60 * 24) + 1;
+    return diffTime / (1000 * 60 * 60 * 24) + 1 + " days";
   }
 
   return (
@@ -125,9 +122,7 @@ export default function MyActivities() {
                   >
                     <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
                       <div className="h-48 bg-gradient-to-br from-emerald-400 to-teal-500 relative overflow-hidden">
-                        {challengesData.map((challenge) => {
-                          // console.log(`ObjectId('${challenge._id}')`);
-                          // console.log(userData.challengeId ==`ObjectId('${challenge._id}')`);
+                        {challengesData.map((challenge,index) => {
                           if (
                             userData.challengeId ==
                             `ObjectId('${challenge._id}')`
@@ -137,6 +132,7 @@ export default function MyActivities() {
                                 className="w-full h-full object-cover"
                                 alt="image is not available"
                                 src={challenge.imageUrl}
+                                key={index}
                               />
                             );
                           }
@@ -145,8 +141,6 @@ export default function MyActivities() {
                         <div className="absolute bottom-4 left-4">
                           <span className="px-4 py-2 bg-white bg-opacity-90 rounded-full text-sm font-semibold text-emerald-800">
                             {challengesData.map((challenge) => {
-                              // console.log(`ObjectId('${challenge._id}')`);
-                              // console.log(userData.challengeId ==`ObjectId('${challenge._id}')`);
                               if (
                                 userData.challengeId ==
                                 `ObjectId('${challenge._id}')`
@@ -160,8 +154,6 @@ export default function MyActivities() {
                       <div className="p-6">
                         <h3 className="text-xl font-bold text-gray-900 mb-2">
                           {challengesData.map((challenge) => {
-                            // console.log(`ObjectId('${challenge._id}')`);
-                            // console.log(userData.challengeId ==`ObjectId('${challenge._id}')`);
                             if (
                               userData.challengeId ==
                               `ObjectId('${challenge._id}')`

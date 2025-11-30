@@ -3,6 +3,7 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import { Link } from "react-router-dom";
 
 const slides = [
   {
@@ -52,10 +53,10 @@ export default function SwiperCarousel() {
               {slide.title}
             </h2>
             <p className="text-sm md:text-lg mb-4">{slide.description}</p>
-            <button className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-full flex items-center gap-2">
+            <Link to='/challenges' className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-full flex items-center gap-2">
               View Challenge
               <span className="text-xl">→</span>
-            </button>
+            </Link>
           </div>
         </SwiperSlide>
       ))}

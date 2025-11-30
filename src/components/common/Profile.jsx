@@ -1,24 +1,21 @@
-import { useContext, use } from "react";
+// import { use } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import logo from "../../assets/logo.png";
 
-import React from "react";
+// import { useEffect } from "react";
 
 function Profile() {
-  const { user } = use(AuthContext);
+  const { user } = useContext(AuthContext);
   console.log(user);
-  const [userData, setUserData] = React.useState(user);
 
   if (!user) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex justify-center items-center h-[85vh]">
+        <span className="loading loading-bars loading-xl"></span>
+      </div>
+    );
   }
-
-  React.useEffect(() => {
-    if (user) {
-      setUserData(user);
-    }
-  }, [user]);
-
-  console.log(userData);
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
@@ -27,14 +24,14 @@ function Profile() {
         <div className="flex justify-center">
           <img
             className="w-32 h-32 rounded-full border-4 border-blue-500"
-            src={userData.photoURL}
+            src={user.photoURL || logo}
             alt="Profile"
           />
         </div>
 
         <div className="text-center mt-4">
           <h1 className="text-2xl font-bold text-gray-800">
-            {userData.displayName}
+            {user.displayName}
           </h1>
           <p className="text-gray-600 mt-2">
             Web Developer | AI & ML Enthusiast | Educator
@@ -44,7 +41,7 @@ function Profile() {
         {/* Contact Info */}
         <div className="mt-6 space-y-2 text-sm text-gray-700">
           <p>
-            Email: <span className="font-medium">anis@example.com</span>
+            Email: <span className="font-medium">{user.email}</span>
           </p>
           <p>Location: Dhaka, Bangladesh</p>
         </div>

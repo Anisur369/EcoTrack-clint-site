@@ -27,6 +27,7 @@ const PublicRoute = createBrowserRouter([
             <Challenges />
           </PrivateRoute>
         ),
+        loader: () => fetch("http://localhost:3000/challenges"),
       },
       {
         path: "/challenges/:id",
@@ -69,7 +70,14 @@ const PublicRoute = createBrowserRouter([
       },
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
-      { path: "/profile", element: <Profile /> },
+      {
+        path: "/profile",
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
+      },
       { path: "/forgot-password", element: <ForgotPasswordLink /> },
       {
         path: "*",

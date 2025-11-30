@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { Link, useParams, useLoaderData, Navigate } from "react-router-dom";
 import {
-  Leaf,
   Calendar,
   Users,
   Target,
@@ -16,21 +15,6 @@ export default function JoinChallenge() {
   const [isJoining, setIsJoining] = useState(false);
   const challenge = useLoaderData();
 
-  // Mock challenge data (এটা তোমার API থেকে আসবে)
-  // const challenge = {
-  //   title: "Plastic-Free July",
-  //   category: "Waste Reduction",
-  //   description:
-  //     "Commit to avoiding single-use plastics for the entire month of July. Reduce waste, protect oceans, and build sustainable habits!",
-  //   duration: "30 days",
-  //   startDate: "July 1, 2025",
-  //   endDate: "July 31, 2025",
-  //   participants: 2847,
-  //   impactMetric: "kg plastic avoided",
-  //   target: "50,000 kg community-wide",
-  //   currentProgress: 68,
-  //   imageUrl: "/api/placeholder/800/400",
-  // };
 
   const handleJoin = async () => {
     setIsJoining(true);

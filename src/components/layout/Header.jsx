@@ -2,6 +2,7 @@ import React, { use } from "react";
 import { NavLink, Link } from "react-router";
 import { AuthContext } from "../../context/AuthContext.jsx";
 import Profile from "../common/UserDropdown.jsx";
+import logo from "../../assets/logo.png";
 
 const Header = () => {
   const { user } = use(AuthContext);
@@ -11,7 +12,7 @@ const Header = () => {
       <NavLink to="/">Home</NavLink>
       <NavLink to="/challenges">Challenges</NavLink>
       <NavLink to="/my-activities">My Activities</NavLink>
-      <NavLink to="/challenges/join">Join Challenge</NavLink>
+      <NavLink to="/challenges/add">add Challenge</NavLink>
     </>
   ) : (
     <>
@@ -51,7 +52,7 @@ const Header = () => {
           </div>
           <Link to="/" className="flex items-center">
             <img
-              src="https://play-lh.googleusercontent.com/KQRIm1clFzsoyX23JNH47baBDC3zAdSfAwssCHf-j5Yyuu-PSnnccwv-IO-a8eEDxB8k"
+              src={logo}
               alt="EcoTrack Logo"
               className="inline-block w-8 h-8 mr-2"
             />

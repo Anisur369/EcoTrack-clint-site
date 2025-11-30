@@ -1,38 +1,15 @@
-// import React, { useState, useEffect } from "react";
-// import { useLoaderData } from "react-router-dom";
-// import ChallengeCard from "../../components/challenges/ChallengeCard.jsx";
-
-// const MyActivities = () => {
-//   const { user } = useLoaderData();
-//   const [activities, setActivities] = useState([]);
-
-//   useEffect(() => {
-//     const fetchActivities = async () => {
-//       const response = await fetch(`/api/activities/${user._id}`);
-//       const data = await response.json();
-//       setActivities(data);
-//     };
-//     fetchActivities();
-//   }, [user]);
-
-//   return <div>hello world</div>;
-// };
-
-// export default MyActivities;
-
-import React from "react";
-import ActiveChallenges from "./../../components/home/ActiveChallenges";
 import { useState, useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
 
 const MyActivities = () => {
-  const { user } = useLoaderData();
+  const user = useLoaderData();
   const [activities, setActivities] = useState([]);
+ 
 
   useEffect(() => {
     const fetchActivities = async () => {
       const response = await fetch(
-        `http://localhost:3000/challenges${user._id}`
+        `http://localhost:3000/challenges/${user.challengeId.split("'")[1]}`
       );
       const data = await response.json();
       setActivities(data);
@@ -44,32 +21,44 @@ const MyActivities = () => {
     <div className="max-w-4xl mx-auto p-6">
       {/* Header */}
       <h1 className="text-3xl font-bold text-green-700 mb-4">
-        Welcome, Eco ActiveChallenges 🌿
+        Welcome, {activities.title} 🌿
       </h1>
 
       {/* Status Card */}
       <div className="bg-white shadow-md rounded-lg p-6 mb-6">
-        <h2 className="text-xl font-semibold text-gray-800 mb-2">
-          Status: <span className="text-green-600">Green Warrior</span> (Level
-          2)
-        </h2>
-        <p className="text-sm text-gray-600 mb-4">Next Level: Eco Champion</p>
+        <div className="flex justify-between">
+          <div>
+            <h2 className="text-xl font-semibold text-gray-800 mb-2">
+              Status: <span className="text-green-600">{user.status}</span>
+            </h2>
+            <p className="text-sm text-gray-600 mb-4">
+              Next Level: {activities.target}
+            </p>
+          </div>
+          <img
+            src={activities.imageUrl}
+            alt="Challenge Image"
+            className="w-26 h-16 rounded-xl mr-4"
+          />
+        </div>
         <div className="w-full bg-gray-200 rounded-full h-4">
           <div
             className="bg-green-500 h-4 rounded-full"
-            style={{ width: "88%" }}
+            style={{ width: `${user.progress}` }}
           ></div>
         </div>
-        <p className="text-sm text-gray-600 mt-2">88 / 100 Impact Points</p>
+        <p className="text-sm text-gray-600 mt-2">
+          {user.progress} / 100 Impact Points
+        </p>
       </div>
 
       {/* Stats Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
         {[
-          { label: "Total Actions", value: 4 },
-          { label: "Actions This Week", value: 4 },
-          { label: "Avg Points/Action", value: 22 },
-          { label: "Action Types", value: 3 },
+          { label: "Total Actions", value: `${user.progress}` },
+          { label: "Actions This days", value: `${activities.duration}` },
+          { label: "Avg Points/Action", value: 2 },
+          { label: "Action Types", value: `${activities.participants}` },
         ].map((stat, idx) => (
           <div
             key={idx}
