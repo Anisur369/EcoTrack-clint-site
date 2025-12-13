@@ -8,12 +8,21 @@ import {
   Clock,
   CheckCircle,
 } from "lucide-react";
-import { toast } from "react-hot-toast";
+// import { toast } from "react-hot-toast"
+import { ToastContainer, toast } from "react-toastify";
 
 export default function JoinChallenge() {
   const { id } = useParams();
   const [isJoining, setIsJoining] = useState(false);
   const challenge = useLoaderData();
+  console.log("Loaded challenge:", challenge);
+  const [joined, setJoined] = useState({    
+userId:"user02@example.com",
+challengeId:`ObjectId('${challenge._id}')`,
+status:"Ongoing",
+progress:0,
+joinDate:"ISODate('2025-11-10T09:30:00Z')"
+  });
 
 
   const handleJoin = async () => {
@@ -21,11 +30,19 @@ export default function JoinChallenge() {
     // TODO: Call your API POST /api/challenges/join/:id
     setTimeout(() => {
       setIsJoining(false);
-      alert("Successfully joined the challenge! 🌱");
+      // alert("Successfully joined the challenge! 🌱");
+      const response = fetch("http://localhost:3000/userChallenges", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(joined),
+      });
+
       // toast.success("Successfully joined the challenge! 🌱");
       // navigate("/my-activities");
-      toast.success("Successfully joined the challenge! 🌱");
-      Navigate("/my-activities");
+      toast.success("Successfully joined the challenge!");
+      // Navigate("/my-activities");
 
       // Redirect to my-activities or show success state
     }, 1500);
@@ -33,6 +50,7 @@ export default function JoinChallenge() {
 
   return (
     <>
+    <ToastContainer />
       {/* Main Content */}
       <main className="min-h-screen bg-gray-50 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -13,7 +13,7 @@ function LoginPage() {
 
   // const notify = () => toast("Wow so easy!");
 
-  const { signInUser, signInWithGoogle } =
+  const { signInUser, signInWithGoogle, ToastContainer } =
     useContext(AuthContext);
 
   const handleLogin = async (e) => {
@@ -72,6 +72,7 @@ function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+      <ToastContainer />
       <div className="w-full max-w-md bg-white shadow-md rounded-lg p-6">
         <h2 className="text-2xl font-bold text-center mb-6">
           Login to EcoTrack

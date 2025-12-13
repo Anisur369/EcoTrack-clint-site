@@ -23,15 +23,13 @@ const PublicRoute = createBrowserRouter([
       {
         path: "/challenges",
         element: (
-          <PrivateRoute>
             <Challenges />
-          </PrivateRoute>
         ),
         loader: () => fetch("http://localhost:3000/challenges"),
       },
       {
         path: "/challenges/:id",
-        element: <ChallengesDetails />,
+        element: <PrivateRoute><ChallengesDetails /></PrivateRoute>,
         loader: ({ params }) =>
           fetch(`http://localhost:3000/challenges/${params.id}`),
       },
@@ -45,7 +43,7 @@ const PublicRoute = createBrowserRouter([
       },
       {
         path: "/challenges/join/:id",
-        element: <JoinChallenge />,
+        element: <PrivateRoute><JoinChallenge /></PrivateRoute>,
         loader: ({ params }) =>
           fetch(`http://localhost:3000/challenges/${params.id}`),
       },

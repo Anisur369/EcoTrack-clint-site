@@ -21,7 +21,7 @@ const ActiveChallenges = () => {
 
   return (
     <section className="py-10 bg-white">
-      <div className="max-w-6xl mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
           🔥 Active Challenges
         </h2>
@@ -29,7 +29,7 @@ const ActiveChallenges = () => {
           {challenges.map((challenge) => (
             <div
               key={challenge._id}
-              className="bg-gray-100 rounded-xl overflow-hidden shadow hover:shadow-lg transition duration-300"
+              className="w-full lg:w-[280px] bg-gray-100 rounded-xl overflow-hidden shadow hover:shadow-lg transition duration-300"
             >
               <div className="relative">
                 <img
@@ -51,7 +51,7 @@ const ActiveChallenges = () => {
                 <p className="text-sm text-gray-600 mt-2">{challenge.metric}</p>
                 <Link
                   to={`/challenges/${challenge._id}`}
-                  className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md mt-4 inline-block"
+                  className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md bottm-0 mt-4 inline-block"
                 >
                   View Challenge
                 </Link>
