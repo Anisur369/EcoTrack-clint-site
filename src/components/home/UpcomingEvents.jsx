@@ -7,7 +7,7 @@ const UpcomingEvents = () => {
 
   useEffect(() => {
     const fetchEvents = async () => {
-      const response = await fetch("http://localhost:3000/events");
+      const response = await fetch("https://eco-track-server-site.vercel.app/events");
       const data = await response.json();
       const sortedData = data.sort(
         (a, b) => new Date(a.date) - new Date(b.date)

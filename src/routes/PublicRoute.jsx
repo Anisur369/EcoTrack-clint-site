@@ -25,13 +25,13 @@ const PublicRoute = createBrowserRouter([
         element: (
             <Challenges />
         ),
-        loader: () => fetch("http://localhost:3000/challenges"),
+        loader: () => fetch("https://eco-track-server-site.vercel.app/challenges"),
       },
       {
         path: "/challenges/:id",
         element: <PrivateRoute><ChallengesDetails /></PrivateRoute>,
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/challenges/${params.id}`),
+          fetch(`https://eco-track-server-site.vercel.app/challenges/${params.id}`),
       },
       {
         path: "/challenges/add",
@@ -45,7 +45,7 @@ const PublicRoute = createBrowserRouter([
         path: "/challenges/join/:id",
         element: <PrivateRoute><JoinChallenge /></PrivateRoute>,
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/challenges/${params.id}`),
+          fetch(`https://eco-track-server-site.vercel.app/challenges/${params.id}`),
       },
       {
         path: "/my-activities",
@@ -54,7 +54,7 @@ const PublicRoute = createBrowserRouter([
             <MyActivities />
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:3000/userChallenges"),
+        loader: () => fetch("https://eco-track-server-site.vercel.app/userChallenges"),
       },
       {
         path: "/my-activities/:id",
@@ -64,7 +64,7 @@ const PublicRoute = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/userChallenges/${params.id}`),
+          fetch(`https://eco-track-server-site.vercel.app/userChallenges/${params.id}`),
       },
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },

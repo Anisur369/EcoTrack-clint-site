@@ -18,8 +18,8 @@ const ChallengesDetails = () => {
   const updateFunction = () => {
     setIsModalOpen(false);
     setShowModal(false);
-    // http://localhost:3000/challenges/{challenge._id} update your challenge server
-    fetch(`http://localhost:3000/challenges/${challenge._id}`, {
+    // https://eco-track-server-site.vercel.app/challenges/{challenge._id} update your challenge server
+    fetch(`https://eco-track-server-site.vercel.app/challenges/${challenge._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

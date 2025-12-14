@@ -25,7 +25,7 @@ const AddChallengeForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:3000/challenges", {
+      const response = await fetch("https://eco-track-server-site.vercel.app/challenges", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

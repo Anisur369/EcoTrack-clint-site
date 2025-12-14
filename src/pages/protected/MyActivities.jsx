@@ -15,17 +15,17 @@ export default function MyActivities() {
   const [userChallenges, setUserChallenges] = useState([]);
   const [challengesData, setChallengesData] = useState([]);
   const [loading, setLoading] = useState(true);
-  // http://localhost:3000/userChallenges fetch user challenges from server
+  // https://eco-track-server-site.vercel.app/userChallenges fetch user challenges from server
   useEffect(() => {
     const fetchUserChallenges = async () => {
-      const response = await fetch("http://localhost:3000/userChallenges");
+      const response = await fetch("https://eco-track-server-site.vercel.app/userChallenges");
       const data = await response.json();
       setUserChallenges(data);
       setLoading(false);
     };
     fetchUserChallenges();
     const fetchChallenges = async () => {
-      const response = await fetch("http://localhost:3000/challenges");
+      const response = await fetch("https://eco-track-server-site.vercel.app/challenges");
       const data = await response.json();
       setChallengesData(data);
       setLoading(false);
@@ -89,10 +89,7 @@ export default function MyActivities() {
                 </p>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold mb-2">
-                  3.8 tons CO₂ saved
-                </div>
-                <p className="text-2xl opacity-90">Total CO₂ Saved</p>
+
               </div>
             </div>
           </div>

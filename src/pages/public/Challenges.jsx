@@ -29,11 +29,11 @@ const Challenges = () => {
     return <p>No challenges available at the moment.</p>;
   }
 
-  // // fetch challenges from server (mocked here) //http://localhost:3000/challenges
+  // // fetch challenges from server (mocked here) //https://eco-track-server-site.vercel.app/challenges
   // React.useEffect(() => {
   //   // Simulate fetching data from an API
   //   const fetchChallenges = async () => {
-  //     const response = await fetch("http://localhost:3000/challenges");
+  //     const response = await fetch("https://eco-track-server-site.vercel.app/challenges");
   //     const data = await response.json();
   //     setChallenges(data);
   //   };

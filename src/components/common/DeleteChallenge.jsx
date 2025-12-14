@@ -7,7 +7,7 @@ function DeleteChallenge({ challengeId }) {
     if (!confirmDelete) return; // User cancelled the deletion
     try {
       const response = await fetch(
-        `http://localhost:3000/challenges/${challengeId}`,
+        `https://eco-track-server-site.vercel.app/challenges/${challengeId}`,
         {
           method: "DELETE",
         }

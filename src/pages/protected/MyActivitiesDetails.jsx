@@ -9,7 +9,7 @@ const MyActivities = () => {
   useEffect(() => {
     const fetchActivities = async () => {
       const response = await fetch(
-        `http://localhost:3000/challenges/${user.challengeId.split("'")[1]}`
+        `https://eco-track-server-site.vercel.app/challenges/${user.challengeId.split("'")[1]}`
       );
       const data = await response.json();
       setActivities(data);

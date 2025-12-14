@@ -50,10 +50,10 @@ import { Link } from "react-router-dom";
 const RecentTips = () => {
   const [tips, setTips] = React.useState([]);
 
-  // Fetch tips from server (mocked here) http://localhost:3000/tips
+  // Fetch tips from server (mocked here) https://eco-track-server-site.vercel.app/tips
   React.useEffect(() => {
     const fetchTips = async () => {
-      const response = await fetch("http://localhost:3000/tips");
+      const response = await fetch("https://eco-track-server-site.vercel.app/tips");
       const data = await response.json();
       const sortedData = data.sort(
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt)

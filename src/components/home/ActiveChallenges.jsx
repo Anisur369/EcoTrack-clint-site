@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 const ActiveChallenges = () => {
   const [challenges, setChallenges] = React.useState([]);
 
-  // Fetch challenges from server (mocked here) http://localhost:3000/challenges
+  // Fetch challenges from server (mocked here) https://eco-track-server-site.vercel.app/challenges
   React.useEffect(() => {
     const fetchChallenges = async () => {
-      const response = await fetch("http://localhost:3000/challenges");
+      const response = await fetch("https://eco-track-server-site.vercel.app/challenges");
       const data = await response.json();
       const sortedData = data.sort(
         (a, b) => new Date(b.startDate) - new Date(a.startDate)

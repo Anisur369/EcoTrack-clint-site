@@ -41,7 +41,7 @@ function LoginPage() {
           image: result.user.photoURL,
         };
 
-        fetch("http://localhost:3000/users", {
+        fetch("https://eco-track-server-site.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",

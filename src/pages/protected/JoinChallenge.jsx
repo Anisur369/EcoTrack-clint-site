@@ -31,7 +31,7 @@ joinDate:"ISODate('2025-11-10T09:30:00Z')"
     setTimeout(() => {
       setIsJoining(false);
       // alert("Successfully joined the challenge! 🌱");
-      const response = fetch("http://localhost:3000/userChallenges", {
+      const response = fetch("https://eco-track-server-site.vercel.app/userChallenges", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
