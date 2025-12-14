@@ -41,11 +41,12 @@ const Register = () => {
 
     try {
       await createUser(email, password, name, photoURL);
-      toast("Registration successful!");
+      toast.success("Registration successful!");
       navigate("/");
     } catch (err) {
       setError("Registration failed. Try again.");
       console.log(err);
+      toast.error("Registration failed. Try again.")
     }
   };
 
@@ -63,14 +64,12 @@ const Register = () => {
         headers: { "content-type": "application/json" },
         body: JSON.stringify(newUser),
       });
-
-      toast("Login successful!");
-
       navigate("/");
+      toast.success("Google sign-in successful!");
     } catch (err) {
       setError("Google sign-in failed.");
-      toast("Google sign-in failed.");
       console.log(err);
+      toast.error("Google sign-in failed.");
     }
   };
 

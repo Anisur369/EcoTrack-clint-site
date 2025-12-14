@@ -1,9 +1,8 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext.jsx";
-
-
 import { toast } from "react-toastify";
+
 
 function LoginPage() {
   const [email, setEmail] = useState("");
@@ -11,25 +10,22 @@ function LoginPage() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  // const notify = () => toast("Wow so easy!");
 
-  const { signInUser, signInWithGoogle, ToastContainer } =
+  const { signInUser, signInWithGoogle } =
     useContext(AuthContext);
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const notify = () => toast("Login successful!");
       await signInUser(email, password);
       setLoading(false);
       navigate("/");
-      notify();
+      toast.success("Login successful!");
     } catch (error) {
-      const notify = () => toast("Login failed...! Not valid user.");
       setLoading(false);
       console.log(error.message);
-      notify();
+      toast.error("Login failed. Try again.");
     }
   };
 
@@ -37,9 +33,7 @@ function LoginPage() {
     try {
       await signInWithGoogle().then((result) => {
         if (result.user) {
-          const notify = () => toast("Login successful!");
           navigate("/");
-          notify();
         }
         const newUser = {
           name: result.user.displayName,
@@ -63,16 +57,15 @@ function LoginPage() {
             }
           });
       });
+      toast.success("Login successful!");
     } catch (error) {
       console.log(error);
-      const notify = () => toast("Google sign-in failed.");
-      notify();
+      toast.error("Google sign-in failed. Try again.");
     }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <ToastContainer />
       <div className="w-full max-w-md bg-white shadow-md rounded-lg p-6">
         <h2 className="text-2xl font-bold text-center mb-6">
           Login to EcoTrack

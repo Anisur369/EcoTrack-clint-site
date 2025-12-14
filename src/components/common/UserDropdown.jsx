@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import { toast } from "react-toastify";
 
 export default function UserDropdown({ user }) {
   const [open, setOpen] = useState(false);
@@ -56,6 +57,7 @@ export default function UserDropdown({ user }) {
           <button
             onClick={() => {
               setOpen(false);
+              toast.info("Logging out...");
               return signOutUser();
             }}
             className="w-full text-left px-4 py-2 text-slate-100 hover:bg-slate-800"

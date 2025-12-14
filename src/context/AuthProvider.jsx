@@ -12,11 +12,12 @@ import {
 } from "firebase/auth";
 import { useState } from "react";
 import { useEffect } from "react";
-import { ToastContainer, toast } from "react-toastify";
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  
 
   const googleProvider = new GoogleAuthProvider();
 
@@ -34,33 +35,27 @@ export const AuthProvider = ({ children }) => {
       });
       setUser(result.user);
       setLoading(false);
-      toast("Account created successfully!");
       return result;
     } catch (error) {
       console.log(error);
-      toast("Account creation failed...!");
     }
   };
   const signInUser = (email, password) => {
     setLoading(true);
-    toast("Logging in Successfully...");
     return signInWithEmailAndPassword(auth, email, password);
   };
   const signOutUser = () => {
     setLoading(false);
     setUser(null);
-    toast("Logging out ...");
     return signOut(auth);
   };
   const resetPassword = (email) => {
     setLoading(true);
-    toast("Sending password reset email...");
     return firebaseResetPassword(auth, email);
   };
 
   const signInWithGoogle = () => {
     setLoading(true);
-    toast("Logging in with Google...");
     return signInWithPopup(auth, googleProvider);
   };
 
@@ -86,8 +81,6 @@ export const AuthProvider = ({ children }) => {
     loading,
     signInWithGoogle,
     sendPasswordResetEmail: resetPassword,
-    ToastContainer,
-    toast,
   };
 
   return (
