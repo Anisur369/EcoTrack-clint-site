@@ -1,16 +1,77 @@
-# React + Vite
+# 🌿 EcoTrack — Sustainable Living Community
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<img src="https://raw.githubusercontent.com/Anisur369/EcoTrack-clint-site/refs/heads/main/src/assets/logo.png" alt="image"/>
 
-Currently, two official plugins are available:
+**EcoTrack** একটি কমিউনিটি প্ল্যাটফর্ম যেখানে পরিবেশ-সচেতন মানুষরা টেকসই জীবনযাপনের চ্যালেঞ্জে অংশ নেয়, ব্যবহারিক ইকো-টিপস শেয়ার করে, লোকাল গ্রিন ইভেন্ট খুঁজে পায় এবং নিজের পরিবেশগত প্রভাব ট্র্যাক করে — সবকিছু পরিমাপযোগ্য এবং কমিউনিটি-চালিত প্রগ্রেসের উপর ফোকাস করে।
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Visit_Now-brightgreen?style=for-the-badge&logo=netlify)](https://ecotrack-assigment10.netlify.app/)
+[![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white)](https://reactjs.org/)
+[![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white)](https://firebase.google.com/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://mongodb.com/)
+[![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
 
-## React Compiler
+## 🚀 লাইভ সাইট ও রিপোজিটরি
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+- 🌍 **Live URL**: [https://ecotrack-assigment10.netlify.app](https://ecotrack-assigment10.netlify.app)
+- 🖥️ **Client repo**: [github.com/Anisur369/EcoTrack-clint-site](https://github.com/Anisur369/EcoTrack-clint-site)
+- 🖥️ **Server Repository**: [github.com/Anisur369/EcoTrack-server-site](https://github.com/Anisur369/EcoTrack-server-site)
 
-## Expanding the ESLint configuration
+## ✨ প্রধান ফিচারসমূহ
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 🏠 **ডায়নামিক হোমপেজ** — হিরো কারোসেল, লাইভ স্ট্যাটস (CO₂ সেভড, প্লাস্টিক রিডুসড), অ্যাক্টিভ চ্যালেঞ্জ, সাম্প্রতিক টিপস ও আপকামিং ইভেন্টস
+- 🔐 **অথেন্টিকেশন** — Firebase (Email/Password + Google Sign-In), প্রোটেক্টেড রুট ও ইনটেন্ডেড রুট রিডাইরেক্ট
+- 📊 **পার্সোনাল ড্যাশবোর্ড** — My Activities-এ প্রগ্রেস ট্র্যাকিং, স্ট্যাটাস আপডেট ও পার্সেন্টেজ UI
+- 🎯 **অ্যাডভান্সড ফিল্টারিং** — ক্যাটাগরি, তারিখের রেঞ্জ ও পার্টিসিপ্যান্ট সংখ্যা দিয়ে চ্যালেঞ্জ ফিল্টার
+- ⚙️ **ফুল CRUD অপারেশন** — চ্যালেঞ্জ, টিপস, ইভেন্টস ও ইউজার প্রগ্রেসের জন্য
+- 📱 **ফুললি রেসপন্সিভ** — মোবাইল, ট্যাবলেট ও ডেস্কটপের জন্য অপটিমাইজড
+- ⏳ **সুন্দর UX** — গ্লোবাল স্পিনার, স্কেলেটন লোডার, টোস্ট নোটিফিকেশন ও Error Boundary
+- ♿ **অ্যাক্সেসিবিলিটি** — সেমান্টিক HTML, alt ট্যাগ ও ফোকাস স্টেট
+- 🔒 **সিকিউরিটি** — এনভায়রনমেন্ট ভ্যারিয়েবল সুরক্ষিত
+
+## 🛤️ রুটসমূহ (SPA)
+
+### পাবলিক রুট
+| রুট                     | বর্ণনা                  |
+|-------------------------|--------------------------|
+| `/`                     | হোমপেজ                  |
+| `/challenges`           | সকল চ্যালেঞ্জ            |
+| `/login`, `/register`   | লগইন/রেজিস্ট্রেশন       |
+| `/forgot-password`      | পাসওয়ার্ড রিসেট          |
+
+### প্রোটেক্টেড রুট (লগইন প্রয়োজন)
+| রুট                          | বর্ণনা                        |
+|------------------------------|-------------------------------|
+| `/challenges/add`            | নতুন চ্যালেঞ্জ তৈরি           |
+| `/challenges/join/:id`       | চ্যালেঞ্জে জয়েন               |
+| `/my-activities`             | পার্সোনাল ড্যাশবোর্ড           |
+| `/my-activities/:id`         | নির্দিষ্ট অ্যাক্টিভিটি ডিটেইল   |
+
+## 🔌 API এন্ডপয়েন্টস (Express + MongoDB)
+
+| মেথড   | এন্ডপয়েন্ট                     | বর্ণনা                                      |
+|--------|-------------------------------|---------------------------------------------|
+| GET    | `/api/challenges`             | ফিল্টার সহ চ্যালেঞ্জ লিস্ট                    |
+| GET    | `/api/challenges/:id`         | একটি চ্যালেঞ্জের ডিটেইলস                    |
+| POST   | `/api/challenges`             | নতুন চ্যালেঞ্জ তৈরি                          |
+| PATCH  | `/api/challenges/:id`         | আপডেট (owner/admin)                        |
+| DELETE | `/api/challenges/:id`         | ডিলিট (owner/admin)                         |
+| POST   | `/api/challenges/join/:id`    | চ্যালেঞ্জে জয়েন (participants বাড়ে)         |
+| GET    | `/api/tips`                   | সকল টিপস                                   |
+| GET    | `/api/events`                 | সকল ইভেন্ট                                 |
+
+## 🗄️ MongoDB কালেকশন স্কিমা (সারাংশ)
+
+- **challenges**: title, category, description, duration, target, participants, impactMetric, createdBy, startDate, endDate, imageUrl
+- **userChallenges**: userId, challengeId, status, progress, joinDate
+- **tips**: title, content, category, author, authorName, upvotes
+- **events**: title, description, date, location, organizer, maxParticipants, currentParticipants
+
+## 📩 যোগাযোগ
+
+- 👨‍💻 **Developer**: Anisur Rahman
+- 📧 **Email**: [anisurrahman57136@gmail.com](mailto:anisurrahman57136@gmail.com)
+- 📍 **Location**: Dhaka, Bangladesh
+
+---
+
+⭐ যদি প্রজেক্টটি ভালো লাগে তাহলে একটা স্টার দিয়ে উৎসাহ দিও! 🌟
