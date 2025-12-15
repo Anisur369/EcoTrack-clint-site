@@ -35,27 +35,27 @@ function LoginPage() {
         if (result.user) {
           navigate("/");
         }
-        const newUser = {
-          name: result.user.displayName,
-          email: result.user.email,
-          image: result.user.photoURL,
-        };
+        // const newUser = {
+        //   name: result.user.displayName,
+        //   email: result.user.email,
+        //   image: result.user.photoURL,
+        // };
 
-        fetch("https://eco-track-server-site.vercel.app/users", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(newUser),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.message) {
-              console.log(data.message);
-            } else {
-              console.log("User added successfully");
-            }
-          });
+        // fetch("https://eco-track-server-site.vercel.app/userChallenges", {
+        //   method: "POST",
+        //   headers: {
+        //     "content-type": "application/json",
+        //   },
+        //   body: JSON.stringify(newUser),
+        // })
+        //   .then((res) => res.json())
+        //   .then((data) => {
+        //     if (data.message) {
+        //       console.log(data.message);
+        //     } else {
+        //       console.log("User added successfully");
+        //     }
+        //   });
       });
       toast.success("Login successful!");
     } catch (error) {
