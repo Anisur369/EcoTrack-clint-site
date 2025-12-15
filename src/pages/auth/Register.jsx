@@ -59,7 +59,7 @@ const Register = () => {
         image: result.user.photoURL,
       };
 
-      await fetch("https://eco-track-server-site.vercel.app/users", {
+      await fetch("https://eco-track-server-site.vercel.app/userChallenges", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(newUser),

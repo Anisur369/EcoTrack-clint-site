@@ -29,7 +29,7 @@ const PublicRoute = createBrowserRouter([
       },
       {
         path: "/challenges/:id",
-        element: <PrivateRoute><ChallengesDetails /></PrivateRoute>,
+        element: <ChallengesDetails />,
         loader: ({ params }) =>
           fetch(`https://eco-track-server-site.vercel.app/challenges/${params.id}`),
       },

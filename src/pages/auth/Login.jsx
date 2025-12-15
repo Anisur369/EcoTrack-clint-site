@@ -32,6 +32,7 @@ function LoginPage() {
   const handleGoogleSignIn = async () => {
     try {
       await signInWithGoogle().then((result) => {
+        console.log(result.user);
         if (result.user) {
           navigate("/");
         }
