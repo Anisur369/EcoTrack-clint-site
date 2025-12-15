@@ -4,8 +4,11 @@ import { useLoaderData } from "react-router-dom";
 import { Link } from "react-router-dom";
 import DeleteChallenge from "../common/DeleteChallenge.jsx";
 import { toast } from "react-hot-toast";
+import { AuthContext } from "../../context/AuthContext.jsx";
+import { useContext } from "react";
 
 const ChallengesDetails = () => {
+  const { user } = useContext(AuthContext);
   const challenge = useLoaderData();
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [challengeModal, setChallengeModal] = React.useState(challenge);
@@ -40,14 +43,15 @@ const ChallengesDetails = () => {
             >
               Update
             </button>
-          ) : (
+          ) : user ? (
             <button
-              onClick={() => editFunction()}
+              onClick={editFunction}
               className="absolute top-9 right-9 bg-green-400 text-white font-semibold px-3 py-1 rounded-md cursor-pointer"
             >
               Edit
             </button>
-          )}
+          ) : ("")
+          }
         </div>
         {isModalOpen ? (
           <div className="flex justify-start">
@@ -220,7 +224,7 @@ const ChallengesDetails = () => {
           >
             Join Challenge
           </Link>
-          <DeleteChallenge challengeId={challenge._id} />
+          {user ? <DeleteChallenge challengeId={challenge._id} /> : ""}
         </div>
       </div>
       <div className="max-w-3xl mx-auto p-6">
